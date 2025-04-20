@@ -21,6 +21,7 @@ import Navbar from '../components/Navbar.astro';
       <div class="bento-item">
         <h3>Fumigación Residencial</h3>
         <p>Protege tu hogar de plagas con nuestros servicios seguros y efectivos.</p>
+
       </div>
       <div class="bento-item">
         <h3>Fumigación Comercial</h3>
@@ -34,24 +35,7 @@ import Navbar from '../components/Navbar.astro';
         <h3>Control de Termitas</h3>
         <p>Eliminación y prevención de infestaciones de termitas.</p>
       </div>
-    </div>
-    <div class="bento-grid four-items fade-up-children" style="margin-top: 1.5rem;">
-      <div class="bento-item">
-        <h3>Fumigación Preventiva</h3>
-        <p>Medidas para evitar futuras infestaciones.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Desinfección Ambiental</h3>
-        <p>Servicios para eliminar virus y bacterias.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Control de Roedores</h3>
-        <p>Soluciones efectivas contra ratas y ratones.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Manejo Integrado de Plagas</h3>
-        <p>Enfoque sostenible y a largo plazo.</p>
-      </div>
+      {/* He limitado a 4 cajas para este ejemplo */}
     </div>
     <div style="text-align: center; margin-top: 2rem;">
       <a href="https://wa.me/50685130420?text=Hola%20Alejandro,%20quiero%20mas%20informacion%20sobre%20los%20servicios%20de%20fumigacion." class="whatsapp-button">
@@ -79,24 +63,7 @@ import Navbar from '../components/Navbar.astro';
         <h3>Instalación y Reparación de Sanitarios</h3>
         <p>Servicios completos para sus inodoros y otros sanitarios.</p>
       </div>
-    </div>
-    <div class="bento-grid four-items fade-up-children" style="margin-top: 1.5rem;">
-      <div class="bento-item">
-        <h3>Instalación de Grifería</h3>
-        <p>Colocación y reemplazo de grifos y llaves.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Reparación de Calentadores de Agua</h3>
-        <p>Servicios para sus calentadores eléctricos y de gas.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Detección de Fugas Ocultas</h3>
-        <p>Tecnología avanzada para encontrar fugas no visibles.</p>
-      </div>
-      <div class="bento-item">
-        <h3>Mantenimiento Preventivo de Fontanería</h3>
-        <p>Revisiones para evitar problemas futuros.</p>
-      </div>
+      {/* He limitado a 4 cajas para este ejemplo */}
     </div>
     <div style="text-align: center; margin-top: 2rem;">
       <a href="https://wa.me/50685130420?text=Hola%20Alejandro,%20quiero%20mas%20informacion%20sobre%20los%20servicios%20de%20fontaneria." class="whatsapp-button">
@@ -107,7 +74,7 @@ import Navbar from '../components/Navbar.astro';
 
   <footer class="fade-in" style="text-align: center; padding: 3rem 2rem; background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
     <p style="font-size: 1.1rem; line-height: 1.6;">
-      Desarrollado por: <span style="font-weight: bold;">Aejandro Gómez Avenaño</span><br>
+      Desarrollado por: <span style="font-weight: bold;">Aejandro Gómez Avendaño</span><br>
       Correo electrónico: <a href="mailto:kendallgomezmolina16@gmail.com" style="color: #007bff; text-decoration: none;">kendallgomezmolina16@gmail.com</a><br>
       Número de teléfono: <a href="tel:+50685130420" style="color: #007bff; text-decoration: none;">8513-0420</a>
     </p>
@@ -144,6 +111,7 @@ import Navbar from '../components/Navbar.astro';
         if (entry.isIntersecting) {
           const children = entry.target.querySelectorAll('.bento-item');
           children.forEach((child, index) => {
+            child.style.transitionDelay = `${index * 100}ms`; // Anima cada item con un pequeño retraso
             child.classList.add('in-view');
             observer.unobserve(child);
           });
@@ -153,13 +121,6 @@ import Navbar from '../components/Navbar.astro';
 
     const fadeUpChildrenElements = document.querySelectorAll('.fade-up-children');
     fadeUpChildrenElements.forEach(el => observerChildren.observe(el));
-
-    // Animación de fondo sutil con colores relajantes
-    function animateBackground() {
-      document.body.style.backgroundPosition = `${performance.now() / 150}px 0`;
-      requestAnimationFrame(animateBackground);
-    }
-    requestAnimationFrame(animateBackground);
   </script>
 
   <style>
@@ -168,18 +129,10 @@ import Navbar from '../components/Navbar.astro';
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f8ff; /* Un azul muy claro y suave (AliceBlue) */
+      background-color: #f8f9fa;
       color: #343a40;
       line-height: 1.7;
       scroll-behavior: smooth;
-      background-image: linear-gradient(to right, #e0f2f7, #f0f8ff, #e0f2f7); /* Degradado suave en tonos azules y blancos */
-      background-size: 200% auto; /* Para la animación */
-      animation: backgroundAnimation 15s linear infinite; /* Ralentizamos un poco la animación */
-    }
-
-    @keyframes backgroundAnimation {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
     }
 
     .section {
@@ -274,6 +227,21 @@ import Navbar from '../components/Navbar.astro';
       margin-bottom: 1rem;
     }
 
+    .bento-item .button.whatsapp {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 0.3rem;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .bento-item .button.whatsapp:hover {
+      background-color: #128C7E;
+    }
+
     /* Estilos para forzar 4 items y el mismo tamaño */
     .bento-grid.four-items {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta el minmax según necesites */
@@ -283,20 +251,16 @@ import Navbar from '../components/Navbar.astro';
       aspect-ratio: 1 / 1; /* Esto fuerza la relación de aspecto 1:1 (cuadrado) */
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Centra el contenido verticalmente */
-      align-items: center; /* Centra el contenido horizontalmente */
-      text-align: center; /* Centra el texto dentro del item */
-      padding: 1.5rem; /* Reduce un poco el padding si el texto es largo */
+      justify-content: space-between; /* Espacia el contenido internamente */
     }
 
-    .bento-item h3 {
-      font-size: 1.2rem; /* Reduce el tamaño del título para más contenido */
-      margin-bottom: 0.5rem;
-    }
-
+    .bento-item h3,
     .bento-item p {
-      font-size: 0.9rem; /* Reduce el tamaño del párrafo para más contenido */
-      margin-bottom: 0;
+      margin-bottom: 0.5rem; /* Reduce un poco el margen inferior */
+    }
+
+    .bento-item .button.whatsapp {
+      margin-top: auto; /* Empuja el botón hacia la parte inferior */
     }
 
     /* Responsive Design */
@@ -306,15 +270,6 @@ import Navbar from '../components/Navbar.astro';
       }
       .bento-grid.four-items .bento-item {
         aspect-ratio: auto; /* Quita la relación de aspecto forzada en móviles */
-        display: block; /* Volvemos al display block para el flujo normal */
-        text-align: left; /* Alinea el texto a la izquierda en móviles */
-        padding: 1.5rem;
-      }
-      .bento-item h3 {
-        font-size: 1.5rem;
-      }
-      .bento-item p {
-        font-size: 1rem;
       }
     }
 
